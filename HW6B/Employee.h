@@ -1,13 +1,20 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
 class Employee {
     private:
-    string name;
-    double hourlyWage;
-    int hoursWorked;
-    int employeeID;
-    static int nextID;
+    
+        string name;
+        double hourlyWage;
+        int hoursWorked;
+        int employeeID;
+        static int nextID;
 
 public:
     Employee(string name, double hourlyWage);
