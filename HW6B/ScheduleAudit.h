@@ -1,5 +1,5 @@
-#ifndef STORE_H
-#define STORE_H
+#ifndef SCHEDULEAUDIT_H
+#define SCHEDULEAUDIT_H
 
 #include "Employee.h"
 #include "Manager.h"
