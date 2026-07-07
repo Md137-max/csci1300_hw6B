@@ -1,11 +1,6 @@
 #ifndef SCHEDULEAUDIT_H
 #define SCHEDULEAUDIT_H
 
-#include "Employee.h"
-#include "Manager.h"
-#include "Cashier.h"
-
-#include <iostream>
 #include <string>
 #include<vector>
 

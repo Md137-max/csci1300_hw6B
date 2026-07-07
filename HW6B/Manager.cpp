@@ -35,9 +35,7 @@ bool Manager::qualifiesForPromotion() {
     if (getHoursWorked() >= 160 && bonus > 0.0 && teamSize >= 2) {
         return true;
     }
-    else {
         return false;
-    }
 }
 
 int Manager::getTeamSize() {

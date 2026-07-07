@@ -1,7 +1,7 @@
 #ifndef STORE_H
 #define STORE_H
 
-#include "Employee.h"
+
 #include "Manager.h"
 #include "Cashier.h"
 

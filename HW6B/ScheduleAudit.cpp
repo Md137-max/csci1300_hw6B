@@ -1,7 +1,4 @@
-#include "Manager.h"
-#include "Cashier.h"
-#include "Employee.h"
-#include "Store.h"
+
 #include "ScheduleAudit.h"
 
 using namespace std;
@@ -25,9 +22,9 @@ double ScheduleAudit::findBestAlignment() {
 
     bestSimilarityScore = 0.0;
     bestAlignmentIndex = 0;
-for (int i = 0; i <= longest.length() - shortest.length(); i++) {
+for (size_t i = 0; i <= longest.length() - shortest.length(); i++) {
     int match = 0;
-    for (int j = 0; j < shortest.length(); j++) {
+    for (size_t j = 0; j < shortest.length(); j++) {
         if (shortest[j] == longest[i + j]) {
             match++;
         }
@@ -67,7 +64,7 @@ else {
     plannedSHorter = false;
 }
 //option 1
-for (int i = 0; i < shortest.length(); i++ ) {
+for (size_t i = 0; i < shortest.length(); i++ ) {
     if (longest[bestAlignmentIndex + 1] != shortest[i]) {
         //mismatch message
         string mismatched;
@@ -81,7 +78,7 @@ for (int i = 0; i < shortest.length(); i++ ) {
     }
 }
 //option 2
-for (int i = 0; i < bestAlignmentIndex; i++) {
+for (size_t i = 0; i < bestAlignmentIndex; i++) {
 
     if (plannedSHorter) {
         discrepencies.push_back(
@@ -98,7 +95,7 @@ for (int i = 0; i < bestAlignmentIndex; i++) {
 }
 
 //Option 3
-for (int i = bestAlignmentIndex + shortest.length(); i < longest.length(); i++) {
+for (size_t i = bestAlignmentIndex + shortest.length(); i < longest.length(); i++) {
 
     if (plannedSHorter) {
         discrepencies.push_back(

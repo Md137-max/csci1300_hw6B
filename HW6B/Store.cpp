@@ -1,6 +1,4 @@
-#include "Manager.h"
-#include "Cashier.h"
-#include "Employee.h"
+
 #include "Store.h"
 
 using namespace std;
@@ -24,10 +22,10 @@ int Store::managerCount() {
 double Store::totalPayroll() {
     double sum = 0.0;
 
-    for (int i = 0; i < cashiers.size(); i++) {
+    for (size_t i = 0; i < cashiers.size(); i++) {
         sum += cashiers[i].calculatePay();
     }
-    for (int i = 0; i < managers.size(); i++) {
+    for (size_t i = 0; i < managers.size(); i++) {
         sum += managers[i].calculatePay();
     }
     return sum;
@@ -39,7 +37,7 @@ Cashier Store::topCashier() {
         return Cashier("None", 0.0);
     }
     int TopCash = 0;
-    for (int i = 0; i < cashiers.size(); i++) {
+    for (size_t i = 0; i < cashiers.size(); i++) {
         
         if (cashiers[i].performanceScore() > cashiers[TopCash].performanceScore()) {
             TopCash = i;
@@ -60,7 +58,7 @@ Cashier Store::topCashier() {
 
 vector<Manager> Store::promotionEligible() {
     vector<Manager> eligible;
-    for (int i = 0; i < managers.size(); i++) {
+    for (size_t i = 0; i < managers.size(); i++) {
         if (managers[i].qualifiesForPromotion() == true) {
             eligible.push_back(managers[i]);
         }
@@ -69,7 +67,7 @@ vector<Manager> Store::promotionEligible() {
 }
 
 bool Store::promoteToManager(int employeeID, int teamSize) {
-    for (int i = 0; i < cashiers.size(); i++) {
+    for (size_t i = 0; i < cashiers.size(); i++) {
         
         if (cashiers[i].getID() == employeeID) {
             string name = cashiers[i].getName();
@@ -85,7 +83,7 @@ bool Store::promoteToManager(int employeeID, int teamSize) {
             managers.push_back(promoted);
 
             vector<Cashier> updatedCashiers;
-            for (int j = 0; j < cashiers.size(); j++) {
+            for (size_t j = 0; j < cashiers.size(); j++) {
                 if (j != i) {
                     updatedCashiers.push_back(cashiers[j]);
                 }
@@ -124,7 +122,7 @@ string Store::generateReport() {
         report += "None";
     }
     else {
-        for (int i = 0; i < eligible.size(); i++) {
+        for (size_t i = 0; i < eligible.size(); i++) {
             report += eligible[i].getName();
 
             if (i < eligible.size() - 1) {
