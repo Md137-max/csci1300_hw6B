@@ -22,14 +22,14 @@ double ScheduleAudit::findBestAlignment() {
 
     bestSimilarityScore = 0.0;
     bestAlignmentIndex = 0;
-for (size_t i = 0; i <= longest.length() - shortest.length(); i++) {
+for (size_t i = 0; i <= longest.size() - shortest.size(); i++) {
     int match = 0;
-    for (size_t j = 0; j < shortest.length(); j++) {
+    for (size_t j = 0; j < shortest.size(); j++) {
         if (shortest[j] == longest[i + j]) {
             match++;
         }
     }
-    double score = (double)match / shortest.length();
+    double score = (double)match / shortest.size();
     if (score > bestSimilarityScore) {
         bestSimilarityScore = score;
         bestAlignmentIndex = i;
@@ -64,21 +64,21 @@ else {
     plannedSHorter = false;
 }
 //option 1
-for (size_t i = 0; i < shortest.length(); i++ ) {
-    if (longest[bestAlignmentIndex + 1] != shortest[i]) {
+for (size_t i = 0; i < shortest.size(); i++ ) {
+    if (longest[bestAlignmentIndex + i] != shortest[i]) {
         //mismatch message
         string mismatched;
         if(plannedSHorter) {
             mismatched = "Mismatch at position " + to_string(i + 1) + ": planned " + string(1, shortest[i]) + " but worked " + string(1, longest[bestAlignmentIndex + i]);
         }
         else {
-            mismatched = "Mismatch at position " + to_string(i + 1) + ": planned " + string(1, longest[bestAlignmentIndex + 1]) + " but worked " + string(1, shortest[i]);
+            mismatched = "Mismatch at position " + to_string(i + 1) + ": planned " + string(1, longest[bestAlignmentIndex + i]) + " but worked " + string(1, shortest[i]);
         }
         discrepencies.push_back(mismatched);
     }
 }
 //option 2
-for (size_t i = 0; i < bestAlignmentIndex; i++) {
+for (int i = 0; i < bestAlignmentIndex; i++) {
 
     if (plannedSHorter) {
         discrepencies.push_back(
@@ -95,7 +95,7 @@ for (size_t i = 0; i < bestAlignmentIndex; i++) {
 }
 
 //Option 3
-for (size_t i = bestAlignmentIndex + shortest.length(); i < longest.length(); i++) {
+for (size_t i = bestAlignmentIndex + shortest.size(); i < longest.size(); i++) {
 
     if (plannedSHorter) {
         discrepencies.push_back(
@@ -105,9 +105,7 @@ for (size_t i = bestAlignmentIndex + shortest.length(); i < longest.length(); i+
     }
     else {
         discrepencies.push_back(
-            "Missed Shift at position " + to_string(i + 1) +
-            ": " + string(1, longest[i]) +
-            " was planned but never worked");
+            "Missed Shift at position " + to_string(i + 1) + ": " + string(1, longest[i]) + " was planned but never worked");
     }
 }
 return discrepencies;

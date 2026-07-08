@@ -25,10 +25,10 @@ bool Employee::logHours(int hours){
     if (hours < 0) {
         return false;
     }
-    else {
+    
         hoursWorked += hours;
         return true;
-    }
+    
 }
 
 
@@ -36,12 +36,12 @@ double Employee::calculatePay() {
     if (hoursWorked <= 40) {
         return hoursWorked * hourlyWage;
     }
-    else if (hoursWorked >= 41 && hoursWorked <= 60) {
-        return hoursWorked * (hourlyWage * 1.5);
+    else if (hoursWorked <= 60) {
+        return 40 * hourlyWage + (hoursWorked - 40) * (hourlyWage * 1.5);
     }
-    else {
-        return hoursWorked * (hourlyWage * 2);
-    }
+    
+    return 40 * hourlyWage + 20 * (hourlyWage * 1.5) + (hoursWorked - 60) * (hourlyWage * 2.0);
+    
 }
 
 int Employee::getID() {
